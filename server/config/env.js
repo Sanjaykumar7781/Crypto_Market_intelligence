@@ -14,10 +14,12 @@ if (!fs.existsSync(rootEnvPath) && fs.existsSync(serverEnvPath)) {
   dotenv.config({ path: serverEnvPath, override: true });
 }
 
+const rawClientUrl = process.env.CLIENT_URL || 'http://localhost:5173';
+
 export const env = {
   nodeEnv: process.env.NODE_ENV || 'development',
   port: process.env.PORT || 8080,
-  clientUrl: process.env.CLIENT_URL || 'http://localhost:5173',
+  clientUrl: rawClientUrl.endsWith('/') ? rawClientUrl.slice(0, -1) : rawClientUrl,
   mongoUri: process.env.MONGODB_URI || process.env.MONGO_URI,
   mongoDbName: process.env.MONGODB_DB_NAME || 'crypto_market',
   mongoTimeoutMs: Number(process.env.MONGODB_TIMEOUT_MS || 8000),

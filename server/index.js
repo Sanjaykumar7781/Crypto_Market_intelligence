@@ -63,7 +63,7 @@ const apiLimiter = rateLimit({
   legacyHeaders: false,
 });
 
-app.use(cors({ origin: env.clientUrl }));
+app.use(cors({ origin: env.clientUrl, credentials: true }));
 app.use(express.json());
 app.use(helmet());
 
