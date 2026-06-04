@@ -1,0 +1,8 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "/^cd \"c:\\\\Users\\\\crzay\\\\own project\\\\crypto web\"; node -e \"const http = require\\('http'\\); const body = JSON\\.stringify\\(\\{ message: 'whats news about bitcoin', history: \\[\\] \\}\\); const options=\\{hostname:'localhost',port:8081,path:'/api/chat',method:'POST',headers:\\{'Content-Type':'application/json','Content-Length':Buffer\\.byteLength\\(body\\)\\}\\}; const req=http\\.request\\(options,res=>\\{let d='';res\\.on\\('data',c=>d\\+=c\\);res\\.on\\('end',\\(\\)=>\\{console\\.log\\('STATUS',res\\.statusCode\\);console\\.log\\(d\\);\\}\\);\\}\\); req\\.on\\('error',e=>console\\.error\\('ERR',e\\.message\\)\\); req\\.write\\(body\\); req\\.end\\(\\);\"$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}
