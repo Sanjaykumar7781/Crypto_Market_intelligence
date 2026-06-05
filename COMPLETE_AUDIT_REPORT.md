@@ -1018,7 +1018,7 @@ const prompt = `You are an expert crypto portfolio analyst...Portfolio:\n${JSON.
 **File:** `server/services/groqServices.js` (line 8)
 ```javascript
 export async function askGroq(messages) {
-  if (!env.groqApiKey) {
+  if (!env.ApiKey) {
     throw new Error('Missing GROQ_API_KEY in server environment.');
   }
   
