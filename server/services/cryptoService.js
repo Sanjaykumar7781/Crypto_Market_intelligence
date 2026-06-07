@@ -27,7 +27,19 @@ const cmc = axios.create({
 // always has time to load before the first real HTTP call).
 cmc.interceptors.request.use((config) => {
   const key = process.env.CMC_API_KEY || '';
-  if (key) config.headers['X-CMC_PRO_API_KEY'] = key;
+  
+  if (key) {
+    if (typeof config.headers.set === 'function') {
+      config.headers.set('X-CMC_PRO_API_KEY', key);
+    } else {
+      config.headers['X-CMC_PRO_API_KEY'] = key;
+    }
+  }
+
+  // Diagnostics logging
+  const hasHeader = !!(config.headers.get ? config.headers.get('X-CMC_PRO_API_KEY') : config.headers['X-CMC_PRO_API_KEY']);
+  console.log(`[CMC Request] ${config.baseURL}${config.url} | Key Length: ${key.length} | First 8: ${key.slice(0, 8)}... | Header Attached: ${hasHeader}`);
+  
   return config;
 });
 
@@ -53,6 +65,16 @@ async function cmcGet(url, config = {}) {
       return cmc.get(url, config);
     }
     throw err;
+  }
+}
+
+export async function testCmc() {
+  try {
+    const { data } = await cmcGet('/v1/key/info');
+    return data;
+  } catch (error) {
+    console.error('[CoinMarketCap] testCmc FAILED:', error.response?.status, error.response?.data?.status || error.message);
+    throw error;
   }
 }
 

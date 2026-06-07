@@ -35,6 +35,7 @@ import {
   getMarketInsights,
   getMarketsPage,
   getTrendingCoins,
+  getTestCmc,
 } from './controllers/coinController.js';
 
 import {
@@ -182,6 +183,7 @@ app.get('/api/trending', asyncHandler(getTrendingCoins));
 app.get('/api/insights', asyncHandler(getMarketInsights));
 app.get('/api/coins/:id', asyncHandler(getCoin));
 app.get('/api/coins/:id/chart', asyncHandler(getChart));
+app.get('/api/test-cmc', getTestCmc);
 
 app.get('/', asyncHandler(getCryptoNews));
 

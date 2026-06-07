@@ -7,6 +7,7 @@ import {
   getMarketPage,
   getNews,
   getTrending,
+  testCmc,
 } from '../services/cryptoService.js';
 import { isDatabaseConnected } from '../db.js';
 import { sendResponse } from '../utils/apiResponse.js';
@@ -102,4 +103,17 @@ export async function getDetailsApi(req, res) {
 export async function getChartApi(req, res) {
   const chart = await getCoinChart(req.params.id, req.query.range || '7D', req.query.currency);
   sendResponse(res, 200, 'Coin chart fetched successfully.', chart);
+}
+
+export async function getTestCmc(_req, res) {
+  try {
+    const info = await testCmc();
+    sendResponse(res, 200, 'CMC API Key Info', info);
+  } catch (error) {
+    res.status(error.response?.status || 500).json({
+      success: false,
+      message: 'Failed to verify CMC API key',
+      details: error.response?.data?.status || error.message
+    });
+  }
 }
