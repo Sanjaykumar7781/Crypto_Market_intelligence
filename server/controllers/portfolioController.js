@@ -12,12 +12,12 @@ function sanitizePortfolioForPrompt(portfolio) {
   return {
     holdings: Array.isArray(portfolio.holdings)
       ? portfolio.holdings.slice(0, 50).map(h => ({
-          coinId: String(h.coinId || '').slice(0, 50),
-          symbol: String(h.symbol || '').slice(0, 10),
-          amount: Number(h.amount) || 0,
-          averageBuyPrice: Number(h.averageBuyPrice) || 0,
-          notes: String(h.notes || '').slice(0, 100),
-        }))
+        coinId: String(h.coinId || '').slice(0, 50),
+        symbol: String(h.symbol || '').slice(0, 10),
+        amount: Number(h.amount) || 0,
+        averageBuyPrice: Number(h.averageBuyPrice) || 0,
+        notes: String(h.notes || '').slice(0, 100),
+      }))
       : [],
     baseCurrency: String(portfolio.baseCurrency || 'USD').slice(0, 5),
   };
