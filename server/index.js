@@ -207,6 +207,7 @@ setInterval(async () => {
     io.emit('market:update', {
       market,
       insights,
+      currency: 'usd',
       updatedAt: new Date().toISOString(),
     });
   } catch (error) {
@@ -231,6 +232,9 @@ if (process.env.NODE_ENV === 'production') {
 /* ============================================
    ERROR HANDLING
 ============================================ */
+
+// Silence favicon.ico 404 noise
+app.get('/favicon.ico', (_req, res) => res.status(204).end());
 
 app.use(notFound);
 app.use(errorHandler);

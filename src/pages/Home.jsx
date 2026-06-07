@@ -57,9 +57,15 @@ export default function Home() {
     60000,
   );
 
-  const coins = useMemo(() => snapshot?.market || marketPage?.data || [], [marketPage, snapshot]);
+  const coins = useMemo(() => {
+    // Socket snapshot includes a `currency` field — only use it when it matches
+    const socketCurrency = snapshot?.currency || 'usd';
+    if (snapshot?.market && selectedCurrency === socketCurrency) return snapshot.market;
+    return marketPage?.data || [];
+  }, [marketPage, snapshot, selectedCurrency]);
   const pagination = marketPage?.pagination || marketPage?.meta;
-  const insights = snapshot?.insights || polledInsights;
+  const socketCurrency = snapshot?.currency || 'usd';
+  const insights = (selectedCurrency === socketCurrency && snapshot?.insights) || polledInsights;
 
   useEffect(() => {
     console.debug('Home: coins length =', coins.length, 'source =', marketPage ? 'marketPage' : snapshot ? 'snapshot' : 'none');

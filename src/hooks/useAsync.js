@@ -6,6 +6,9 @@ export function useAsync(factory, deps = [], intervalMs = 0) {
   useEffect(() => {
     let mounted = true;
 
+    // Reset to loading so stale data (e.g. from a previous currency) isn't shown
+    setState((current) => ({ ...current, loading: true }));
+
     async function load() {
       try {
         const data = await factory();
