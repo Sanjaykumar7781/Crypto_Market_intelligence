@@ -242,12 +242,6 @@ npm run build
 
 ---
 
-## 👤 Author
-
-*   **Sanjay Kumar** — *Lead MERN Architect & Engineer* — [GitHub Profile](https://github.com/kumarsanjay60363)
-
----
-
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
