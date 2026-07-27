@@ -548,43 +548,6 @@ Security is treated as a first-class concern in the platform design.
 
 ---
 
-## Future Enhancements
-
-The current platform is a strong foundation for a much larger SaaS experience. The next wave of enhancements could include:
-
-1. Advanced TradingView-style charting panels
-2. Portfolio tax optimization and capital gains analysis
-3. Multi-wallet and exchange integration
-4. Social trading and copy-trading features
-5. Real-time alerts and push notifications
-6. Mobile-native apps for iOS and Android
-7. Dark/light theme personalization
-8. AI-generated portfolio scenarios and simulations
-9. Multi-language support and localization
-10. Enhanced paper trading mode
-11. Institutional dashboard views and analytics packs
-12. Advanced risk metrics and stress testing
-13. Integrated staking and DeFi position tracking
-14. Webhook-based event notifications
-15. Smart watchlist alert automation
-16. AI-based sentiment scoring across social media sources
-17. Customizable dashboards and widget layout
-18. Advanced export options including CSV and Excel
-19. Team collaboration and shared portfolios
-20. White-label enterprise deployment capabilities
-21. Premium subscription and billing integration
-22. Governance and voting insight modules
-23. On-chain analytics and wallet health metrics
-24. Network activity and blockchain explorer integrations
-25. Support for additional exchanges and market venues
-26. Historical scenario replay and backtesting tools
-27. AI-driven asset clustering and thematic investing
-28. Voice-based market assistance
-29. Cross-chain portfolio aggregation
-30. Enterprise reporting features for advisors and funds
-
----
-
 ## Contributing
 
 Contributions are welcome and encouraged.
@@ -626,14 +589,6 @@ You may use, modify, and distribute this software in accordance with the MIT Lic
 ## Author
 
 ### Sanjay Kumar
-
-Lead Engineer and Architect of the Crypto Market Intelligence Platform.
-
-- Role: Full-stack engineer, systems architect, and product-minded developer
-- Focus: React, Node.js, AI integrations, cloud-ready architecture, and modern web platform design
-- Interests: Fintech, analytics, developer tooling, and scalable product systems
-
----
 
 ## Acknowledgements
 
