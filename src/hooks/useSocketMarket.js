@@ -22,7 +22,6 @@ export function useSocketMarket() {
 
   return { snapshot, connected };
 }
-const socketUrl = "https://crypto-market-intelligence-1.onrender.com";
 
 console.log("Socket URL:", socketUrl);
 
