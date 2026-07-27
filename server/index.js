@@ -197,6 +197,12 @@ io.on('connection', (socket) => {
   socket.emit('connected', {
     service: 'crypto-market-realtime',
   });
+
+  socket.emit('market:update', {
+    test: true,
+    message: 'Socket working',
+    updatedAt: new Date().toISOString(),
+  });
 });
 
 setInterval(async () => {
@@ -205,7 +211,24 @@ setInterval(async () => {
       getMarkets(30),
       getInsights(),
     ]);
+    console.log("Interval started");
 
+const [market, insights] = await Promise.all([
+  getMarkets(30),
+  getInsights(),
+]);
+
+console.log("Market length:", market.length);
+console.log("Insights:", insights);
+
+io.emit("market:update", {
+  market,
+  insights,
+  currency: "usd",
+  updatedAt: new Date().toISOString(),
+});
+
+console.log("market:update emitted");
     io.emit('market:update', {
       market,
       insights,
