@@ -21,4 +21,12 @@ export function useSocketMarket() {
   }, []);
 
   return { snapshot, connected };
-}
+}const apiBase = import.meta.env.VITE_API_BASE_URL || '';
+
+const socketUrl =
+  import.meta.env.VITE_SOCKET_URL ||
+  (apiBase.endsWith('/api') ? apiBase.slice(0, -4) : apiBase) ||
+  window.location.origin.replace('5173', '8080');
+
+console.log("VITE_API_BASE_URL:", import.meta.env.VITE_API_BASE_URL);
+console.log("Socket URL:", socketUrl);
