@@ -28,7 +28,7 @@ export function useSocketMarket() {
 
     socket.on('market:update', (data) => {
       console.log("📈 Market update received:", data);
-      setSnapshot(data);
+      //setSnapshot(data);
     });
 
     socket.on('disconnect', (reason) => {

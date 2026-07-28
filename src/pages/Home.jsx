@@ -49,6 +49,7 @@ export default function Home() {
     30000,
   );
   const { data: global } = useAsync(() => api.global(selectedCurrency), [selectedCurrency], 60000);
+  console.log("GLOBAL DATA:", global);
   const { data: trending = [] } = useAsync(api.trending, [], 60000);
   const { data: news = [] } = useAsync(() => api.news('crypto', ''), [], 120000);
   const { data: polledInsights } = useAsync(() => api.insights(selectedCurrency), [selectedCurrency], 60000);
@@ -57,6 +58,11 @@ export default function Home() {
     [selectedTrendCoin, trendRange, selectedCurrency],
     60000,
   );
+  console.log("GLOBAL DATA:", global);
+console.log("Market Cap:", global?.marketCap);
+console.log("Volume:", global?.volume);
+console.log("BTC Dominance:", global?.btcDominance);
+console.log("Fear & Greed:", global?.fearGreed);
 
   const coins = useMemo(() => {
     // Socket snapshot includes a `currency` field — only use it when it matches

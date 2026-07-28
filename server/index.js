@@ -197,12 +197,6 @@ io.on('connection', (socket) => {
   socket.emit('connected', {
     service: 'crypto-market-realtime',
   });
-
-  socket.emit('market:update', {
-    test: true,
-    message: 'Socket working',
-    updatedAt: new Date().toISOString(),
-  });
 });
 setInterval(async () => {
   try {
