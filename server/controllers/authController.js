@@ -45,7 +45,7 @@ export async function signup(req, res) {
     throw new ApiError(400, 'Name, email, password, and phone number are required.');
   }
 
-  const existingUser = await User.findOne({ email });
+  const existingUser = await User.findOne({ email: email.toLowerCase() });
   if (existingUser) {
     throw new ApiError(409, 'An account with this email already exists.');
   }
@@ -55,7 +55,7 @@ export async function signup(req, res) {
     name: name.trim(),
     age: age !== undefined ? Number(age) : undefined,
     phone: phone.trim(),
-    email,
+    email: email.toLowerCase(),
     passwordHash,
     avatarUrl,
     provider: 'email',
@@ -76,7 +76,7 @@ export async function login(req, res) {
     throw new ApiError(400, 'Email and password are required.');
   }
 
-  const user = await User.findOne({ email });
+  const user = await User.findOne({ email: email.toLowerCase() });
   if (!user || !user.passwordHash) {
     throw new ApiError(401, 'Invalid email or password.');
   }

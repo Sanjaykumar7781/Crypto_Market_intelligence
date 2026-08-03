@@ -5,7 +5,15 @@ function isTokenExpired(token) {
     const parts = token.split('.');
     if (parts.length !== 3) return true;
 
-    const payload = JSON.parse(atob(parts[1]));
+    // Handle Base64Url encoding
+    const base64Url = parts[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    
+    // Pad with '=' if needed
+    const pad = base64.length % 4;
+    const paddedBase64 = pad ? base64 + '='.repeat(4 - pad) : base64;
+
+    const payload = JSON.parse(atob(paddedBase64));
     return payload.exp * 1000 < Date.now();
   } catch {
     return true;

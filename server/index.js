@@ -199,6 +199,7 @@ io.on('connection', (socket) => {
   });
 });
 setInterval(async () => {
+  if (io.engine.clientsCount === 0) return;
   try {
     console.log("Interval started");
 

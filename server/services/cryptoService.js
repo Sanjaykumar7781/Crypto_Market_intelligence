@@ -440,9 +440,14 @@ export async function getCoinDetails(id, currency = 'usd') {
   const selectedCurrency = normalizeCurrency(currency);
   const cmcCurrency = selectedCurrency.toUpperCase();
   try {
+    const allCoins = await getAllCoinList();
+    const lq = id.toLowerCase();
+    const match = allCoins.find((c) => c.slug === lq || String(c.cmcId) === lq || c.symbol === lq);
+    const resolvedId = match ? match.cmcId : id;
+
     const [quotesRes, infoRes] = await Promise.all([
-      cmcGet('/v2/cryptocurrency/quotes/latest', { params: { slug: id, convert: cmcCurrency } }),
-      cmcGet('/v2/cryptocurrency/info', { params: { slug: id } }),
+      cmcGet('/v2/cryptocurrency/quotes/latest', { params: { id: resolvedId, convert: cmcCurrency } }),
+      cmcGet('/v2/cryptocurrency/info', { params: { id: resolvedId } }),
     ]);
 
     const coinData = Object.values(quotesRes.data.data)[0];
